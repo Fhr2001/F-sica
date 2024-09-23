@@ -56,12 +56,28 @@ while (Parada == True):
             print ("\n\n")
     
         case 2:
-            
+
+            logging.info (f"Valores atuais de randomização:\n Min: {Min}\n Max: {Max}")
+
             print ("Deseja alterar o valor mínimo e máximo do randomizador?")
 
             if (int(input("Em caso positivo, digite 1\n")) == 1):
+                logging.info("Trocando valores do randomizador")
                 Min = input("Qual o valor mínimo?\n")
                 Max = input ("Qual o valor máximo?\n")
+
+                logging.info (f"Valores inseridos pelo usuário:\n Min: {Min}\n Max: {Max}")
+
+            while (Min >= Max):
+
+                logging.warning("Valores impróprios inseridos")
+
+                print("Valores impróprios, por favor insira na sequencia informada\n")
+                Min = input("Qual o valor mínimo?\n")
+                Max = input ("Qual o valor máximo?\n")
+
+                logging.info (f"Valores inseridos pelo usuário:\n Min: {Min}\n Max: {Max}")
+
 
             Vetores = np.random.randint(Min, Max, (Quantidade * 3)).reshape((Quantidade), 3)
             print ("Segue a Matriz com os valores re-gerados dos vetores:\n")
@@ -69,7 +85,6 @@ while (Parada == True):
 
             print ("\n\n")
 
-            logging.info (f"Valor atual de randomização:\n Min: {Min}\n Max: {Max}")
             logging.info ("Vetores atuais:")
             logging.info (Vetores)
 
@@ -113,11 +128,11 @@ while (Parada == True):
             #Axis = 1 soma todos os numeros de cada linha
             ForçaResultante = np.sum(Vetores, axis = 0)
 
-            Massa = int(input ("\nQual a massa (em quilos) do objeto em questão?\n"))
+            Massa = float(input ("\nQual a massa (em quilos) do objeto em questão?\n"))
 
             while (Massa <= 0):
                 logging.warning(f"{Massa} não é um valor válido como massa")
-                Massa = int(input("ERRO: Forneça um valor de massa válido: "))
+                Massa = float(input("ERRO: Forneça um valor de massa válido: "))
 
 
             logging.info (f"Massa fornecida: {Massa}")
